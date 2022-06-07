@@ -62,7 +62,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
       ),
       validator: widget.validatorFunction,
       maxLength: widget.maxLength,
-      obscureText: obscureText,
+      obscureText: (widget.wantObscureText == false) ? false : obscureText,
     );
   }
 }
