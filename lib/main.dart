@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:registration_app/constants/routes_constants.dart';
+import 'package:registration_app/utils/routes.dart';
 import 'constants/string_constants.dart';
-
-import 'modules/registration/registration_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,8 +17,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const RegistrationScreen(),
       debugShowCheckedModeBanner: false,
+      onGenerateRoute: Routes.onGenerateRoute,
+      initialRoute: RouteConstants.registration,
     );
   }
 }

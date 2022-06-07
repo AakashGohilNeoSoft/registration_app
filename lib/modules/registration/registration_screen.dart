@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:registration_app/constants/routes_constants.dart';
 import '../../common_widgets/base_button.dart';
 import '../../common_widgets/base_text_field.dart';
 import '../../common_widgets/horizontal_sizedbox.dart';
@@ -147,6 +148,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     textEditingController: confirmPasswordController,
                     prefixIcon: Icons.lock,
                     lable: StringConstants.confirmPassword,
+                    wantObscureText: true,
                     validatorFunction: validateConfirmPassword,
                   ),
                   const VerticalSizedBox(),
@@ -154,7 +156,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     buttonText: StringConstants.next,
                     onPressed: () {
                       if (_formGlobalKey.currentState!.validate()) {
-                        print('Validated');
+                        Navigator.pushNamed(context, RouteConstants.yourInfo);
                       }
                     },
                   )
