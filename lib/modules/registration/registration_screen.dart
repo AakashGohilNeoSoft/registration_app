@@ -153,7 +153,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   BaseButton(
                     buttonText: StringConstants.next,
                     onPressed: () {
-                      print('validated');
+                      if (_formGlobalKey.currentState!.validate()) {
+                        print('Validated');
+                      }
                     },
                   )
                 ],
