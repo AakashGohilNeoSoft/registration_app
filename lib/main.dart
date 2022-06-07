@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:registration_app/constants/string_constants.dart';
+import 'constants/string_constants.dart';
 
 import 'modules/registration/registration_screen.dart';
 
