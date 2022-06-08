@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:registration_app/common_widgets/horizontal_sizedbox.dart';
-import 'package:registration_app/constants/string_constants.dart';
+import '../../common_widgets/horizontal_sizedbox.dart';
+import '../../constants/routes_constants.dart';
+import '../../constants/string_constants.dart';
 
 import '../../common_widgets/base_button.dart';
 import '../../common_widgets/base_drop_down_button_form_field.dart';
@@ -160,7 +161,8 @@ class _YourInfoScreenState extends State<YourInfoScreen> {
                         buttonText: StringConstants.next,
                         onPressed: () {
                           if (_formGlobalKey.currentState!.validate()) {
-                            print('validated');
+                            Navigator.pushNamed(
+                                context, RouteConstants.yourAddress);
                           }
                         },
                       ),
@@ -177,7 +179,7 @@ class _YourInfoScreenState extends State<YourInfoScreen> {
 
   String? validateDropDown(String? value) {
     if (value == null) {
-      return 'Required Field';
+      return StringConstants.requiredField;
     } else {
       return null;
     }
@@ -197,7 +199,7 @@ class _YourInfoScreenState extends State<YourInfoScreen> {
     if (value!.isEmpty) {
       return StringConstants.requiredField;
     } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
-      return StringConstants.pleaseEnterValidGrade;
+      return StringConstants.pleaseEnterValidExeperience;
     } else {
       return null;
     }

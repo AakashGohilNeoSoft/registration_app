@@ -44,4 +44,18 @@ class StringConstants {
   static const String pleaseEnterValidGrade = 'Please Enter Valid Grade';
   static const String pleaseEnterValidExeperience =
       'Please Enter Valid Exeperience';
+
+  //YourAddress Screen
+  static const String yourAddress = 'Your Address';
+  static const String address = 'Address';
+  static const String landmark = 'Landmark';
+  static const String city = 'City';
+  static const String state = 'State';
+  static const String pincode = 'Pincode';
+  static const String submit = 'Submit';
+  //YourAddress Screen Errors
+  static const String pleaseEnterValidCity = 'Please Enter Valid City';
+  static const String thePincodeMustBeOf6Digits =
+      'The Pincode Must Be Of 6 Digits';
+  static const String enterValidPincode = 'Enter Valid Pincode';
 }

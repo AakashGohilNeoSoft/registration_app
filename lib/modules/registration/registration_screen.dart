@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:registration_app/constants/routes_constants.dart';
+import '../../constants/routes_constants.dart';
 import '../../common_widgets/base_button.dart';
 import '../../common_widgets/base_text_field.dart';
 import '../../common_widgets/horizontal_sizedbox.dart';
