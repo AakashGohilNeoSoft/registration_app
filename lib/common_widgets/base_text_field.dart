@@ -35,9 +35,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
       controller: widget.textEditingController,
       keyboardType: widget.keyboardType ?? TextInputType.name,
       decoration: InputDecoration(
-        prefixIcon: widget.prefixIcon != null
-            ? Icon(widget.prefixIcon)
-            : const SizedBox(),
+        prefixIcon: widget.prefixIcon != null ? Icon(widget.prefixIcon) : null,
         suffixIcon: widget.suffixIcon != null
             ? GestureDetector(
                 onTap: () {

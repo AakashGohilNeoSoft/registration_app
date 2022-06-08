@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:registration_app/constants/routes_constants.dart';
 import '../../common_widgets/base_button.dart';
 import '../../common_widgets/base_text_field.dart';
@@ -24,6 +25,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   int _groupValue = 1;
   final _formGlobalKey = GlobalKey<FormState>();
+  XFile? profilePhoto;
+  Image? dp;
+  final ImagePicker _imagePicker = ImagePicker();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,29 +40,34 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(22.0),
+          padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 10),
           child: SingleChildScrollView(
             child: Form(
               key: _formGlobalKey,
               child: Column(
                 children: [
-                  Stack(
-                    children: const [
-                      CircleAvatar(
-                        radius: 45,
-                        backgroundColor: Colors.black,
-                        child: CircleAvatar(
-                          radius: 43,
+                  InkWell(
+                    onTap: () async {
+                      pickImage();
+                    },
+                    child: Stack(
+                      children: const [
+                        CircleAvatar(
+                          radius: 45,
+                          backgroundColor: Colors.black,
+                          child: CircleAvatar(
+                            radius: 43,
+                          ),
                         ),
-                      ),
-                      CircleAvatar(
-                        radius: 14,
-                        backgroundColor: Colors.black,
-                        child: CircleAvatar(
-                          radius: 12,
+                        CircleAvatar(
+                          radius: 14,
+                          backgroundColor: Colors.black,
+                          child: CircleAvatar(
+                            radius: 12,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   const VerticalSizedBox(),
                   BaseTextField(
@@ -153,6 +163,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   const VerticalSizedBox(),
                   BaseButton(
+                    width: double.infinity,
                     buttonText: StringConstants.next,
                     onPressed: () {
                       if (_formGlobalKey.currentState!.validate()) {
@@ -228,6 +239,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       return StringConstants.pleaseEnterValidFirstName;
     } else {
       return null;
+    }
+  }
+
+  void pickImage() async {
+    try {
+      profilePhoto = await _imagePicker.pickImage(source: ImageSource.gallery);
+      if (profilePhoto != null) {
+        setState(() {});
+      }
+    } catch (e) {
+      throw (e.toString());
     }
   }
 }

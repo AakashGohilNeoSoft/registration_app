@@ -27,4 +27,21 @@ class StringConstants {
   static const String pleaseEnterPassword = 'Please Enter Password';
   static const String pleaseEnterValidPassword = 'Please Enter Valid Password';
   static const String passwordDoesNotMatch = 'Password Does Not Match';
+
+  //YourInfo Screen
+  static const String yourInfo = 'Your Info';
+  static const String educationalInfo = 'Educational Info :';
+  static const String education = 'Education';
+  static const String yearOfPassing = 'Year Of Passing';
+  static const String grade = 'Grade';
+  static const String professionalInfo = 'Professional Info :';
+  static const String exeperience = 'Exeperience';
+  static const String designation = 'Designation';
+  static const String domain = 'Domain';
+  static const String previous = 'Previous';
+  //YourInfo Screen Errors
+  static const String requiredField = 'Required Field';
+  static const String pleaseEnterValidGrade = 'Please Enter Valid Grade';
+  static const String pleaseEnterValidExeperience =
+      'Please Enter Valid Exeperience';
 }
