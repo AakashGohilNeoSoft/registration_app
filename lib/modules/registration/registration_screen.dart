@@ -1,14 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:registration_app/models/basic_info_model.dart';
-import 'package:registration_app/utils/app_singelton.dart';
-import '../../constants/routes_constants.dart';
+
 import '../../common_widgets/base_button.dart';
 import '../../common_widgets/base_text_field.dart';
 import '../../common_widgets/horizontal_sizedbox.dart';
-import '../../constants/string_constants.dart';
-
 import '../../common_widgets/vertical_sizedbox.dart';
+import '../../constants/routes_constants.dart';
+import '../../constants/string_constants.dart';
+import '../../models/basic_info_model.dart';
+import '../../utils/app_singelton.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -27,8 +29,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   int _groupValue = 1;
   final _formGlobalKey = GlobalKey<FormState>();
-  XFile? profilePhoto;
-  Image? dp;
+  File? profilePhoto;
   final ImagePicker _imagePicker = ImagePicker();
 
   @override
@@ -53,19 +54,25 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       pickImage();
                     },
                     child: Stack(
-                      children: const [
+                      children: [
                         CircleAvatar(
                           radius: 45,
                           backgroundColor: Colors.black,
                           child: CircleAvatar(
-                            radius: 43,
-                          ),
+                              radius: 43,
+                              backgroundImage: (profilePhoto) != null
+                                  ? FileImage(profilePhoto!)
+                                  : null),
                         ),
-                        CircleAvatar(
+                        const CircleAvatar(
                           radius: 14,
                           backgroundColor: Colors.black,
                           child: CircleAvatar(
                             radius: 12,
+                            child: Icon(
+                              Icons.edit,
+                              size: 16,
+                            ),
                           ),
                         ),
                       ],
@@ -171,6 +178,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       try {
                         if (_formGlobalKey.currentState!.validate()) {
                           Singleton.basicInfo = BasicInfo(
+                              profilePhoto: profilePhoto,
                               firstName: firstNameController.text,
                               lastName: lastNameController.text,
                               phone: int.parse(phoneController.text),
@@ -257,9 +265,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   void pickImage() async {
     try {
-      profilePhoto = await _imagePicker.pickImage(source: ImageSource.gallery);
-      if (profilePhoto != null) {
-        setState(() {});
+      XFile? pickedPhoto =
+          await _imagePicker.pickImage(source: ImageSource.gallery);
+      if (pickedPhoto != null) {
+        setState(() {
+          profilePhoto = File(pickedPhoto.path);
+        });
       }
     } catch (e) {
       throw (e.toString());

@@ -1,4 +1,4 @@
-import 'package:registration_app/models/professional_info_model.dart';
+import 'professional_info_model.dart';
 
 import 'address_info_model.dart';
 import 'basic_info_model.dart';

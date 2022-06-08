@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:registration_app/models/address_info_model.dart';
-import 'package:registration_app/utils/app_singelton.dart';
+import '../../models/address_info_model.dart';
+import '../../utils/app_singelton.dart';
 import '../../constants/routes_constants.dart';
 import '../../common_widgets/base_button.dart';
 import '../../common_widgets/base_drop_down_button_form_field.dart';

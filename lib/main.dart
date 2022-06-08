@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'constants/routes_constants.dart';
-import 'utils/routes.dart';
 import 'constants/string_constants.dart';
+import 'utils/routes.dart';
 
 void main() {
   runApp(const MyApp());

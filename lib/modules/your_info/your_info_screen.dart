@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:registration_app/models/education_info_model.dart';
-import 'package:registration_app/models/professional_info_model.dart';
-import 'package:registration_app/utils/app_singelton.dart';
+import '../../models/education_info_model.dart';
+import '../../models/professional_info_model.dart';
+import '../../utils/app_singelton.dart';
 import '../../common_widgets/horizontal_sizedbox.dart';
 import '../../constants/routes_constants.dart';
 import '../../constants/string_constants.dart';
@@ -113,6 +113,7 @@ class _YourInfoScreenState extends State<YourInfoScreen> {
                   textEditingController: experienceController,
                   hintText: StringConstants.exeperience,
                   lable: StringConstants.exeperience,
+                  keyboardType: TextInputType.number,
                   validatorFunction: validateExeperience,
                 ),
                 const VerticalSizedBox(),

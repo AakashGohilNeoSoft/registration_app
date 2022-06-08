@@ -1,4 +1,7 @@
+import 'dart:io';
+
 class BasicInfo {
+  final File? profilePhoto;
   final String firstName;
   final String lastName;
   final int phone;
@@ -7,6 +10,7 @@ class BasicInfo {
   final String password;
 
   BasicInfo({
+    this.profilePhoto,
     required this.firstName,
     required this.lastName,
     required this.phone,
