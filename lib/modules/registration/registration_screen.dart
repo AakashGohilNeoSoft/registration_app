@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:registration_app/models/basic_info_model.dart';
+import 'package:registration_app/utils/app_singelton.dart';
 import '../../constants/routes_constants.dart';
 import '../../common_widgets/base_button.dart';
 import '../../common_widgets/base_text_field.dart';
@@ -166,8 +168,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     width: double.infinity,
                     buttonText: StringConstants.next,
                     onPressed: () {
-                      if (_formGlobalKey.currentState!.validate()) {
-                        Navigator.pushNamed(context, RouteConstants.yourInfo);
+                      try {
+                        if (_formGlobalKey.currentState!.validate()) {
+                          Singleton.basicInfo = BasicInfo(
+                              firstName: firstNameController.text,
+                              lastName: lastNameController.text,
+                              phone: int.parse(phoneController.text),
+                              email: emailController.text,
+                              password: passwordController.text,
+                              gender: Gender(_groupValue));
+                          Navigator.pushNamed(context, RouteConstants.yourInfo);
+                        }
+                      } catch (e) {
+                        throw (e.toString());
                       }
                     },
                   )

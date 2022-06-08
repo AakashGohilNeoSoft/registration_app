@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:registration_app/models/education_info_model.dart';
+import 'package:registration_app/models/professional_info_model.dart';
+import 'package:registration_app/utils/app_singelton.dart';
 import '../../common_widgets/horizontal_sizedbox.dart';
 import '../../constants/routes_constants.dart';
 import '../../constants/string_constants.dart';
@@ -160,9 +163,23 @@ class _YourInfoScreenState extends State<YourInfoScreen> {
                         width: 100,
                         buttonText: StringConstants.next,
                         onPressed: () {
-                          if (_formGlobalKey.currentState!.validate()) {
-                            Navigator.pushNamed(
-                                context, RouteConstants.yourAddress);
+                          try {
+                            if (_formGlobalKey.currentState!.validate()) {
+                              Singleton.educationInfo = EducationInfo(
+                                  education: education!,
+                                  yearOfPassing: int.parse(yearOfPassing!),
+                                  grade: gradeController.text);
+
+                              Singleton.professionalInfo = ProfessionalInfo(
+                                  exeperience:
+                                      int.parse(experienceController.text),
+                                  designation: designation!,
+                                  domain: domain);
+                              Navigator.pushNamed(
+                                  context, RouteConstants.yourAddress);
+                            }
+                          } catch (e) {
+                            throw (e.toString());
                           }
                         },
                       ),

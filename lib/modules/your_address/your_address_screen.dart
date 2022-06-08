@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:registration_app/models/address_info_model.dart';
+import 'package:registration_app/utils/app_singelton.dart';
 import '../../constants/routes_constants.dart';
 import '../../common_widgets/base_button.dart';
 import '../../common_widgets/base_drop_down_button_form_field.dart';
@@ -19,10 +21,10 @@ class _YourAddressScreenState extends State<YourAddressScreen> {
   final cityController = TextEditingController();
   final pincodeController = TextEditingController();
   final _formGlobalKey = GlobalKey<FormState>();
+  String? state;
 
   @override
   Widget build(BuildContext context) {
-    String? state;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -93,11 +95,21 @@ class _YourAddressScreenState extends State<YourAddressScreen> {
                   width: double.infinity,
                   buttonText: StringConstants.submit,
                   onPressed: () {
-                    if (_formGlobalKey.currentState!.validate()) {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          RouteConstants.registrationSuccessful,
-                          (route) => false);
+                    try {
+                      if (_formGlobalKey.currentState!.validate()) {
+                        Singleton.addressInfo = AddressInfo(
+                            address: addressController.text,
+                            landmark: landmarkController.text,
+                            city: cityController.text,
+                            state: state!,
+                            pincode: int.parse(pincodeController.text));
+                        Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            RouteConstants.registrationSuccessful,
+                            (route) => false);
+                      }
+                    } catch (e) {
+                      throw (e.toString());
                     }
                   },
                 )
