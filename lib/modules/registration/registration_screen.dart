@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../constants/asset_paths.dart';
+import '../../constants/color_constants.dart';
 
 import '../../common_widgets/base_button.dart';
 import '../../common_widgets/base_text_field.dart';
@@ -20,6 +22,7 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  //TextField Controllers
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
@@ -27,7 +30,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
-  int _groupValue = 1;
+  int _groupValue = 1; //radio button value
   final _formGlobalKey = GlobalKey<FormState>();
   File? profilePhoto;
   final ImagePicker _imagePicker = ImagePicker();
@@ -57,7 +60,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       children: [
                         CircleAvatar(
                           radius: 45,
-                          backgroundColor: Colors.black,
+                          backgroundColor: ColorConstants.blackColor,
                           child: CircleAvatar(
                               radius: 43,
                               backgroundImage: (profilePhoto) != null
@@ -66,7 +69,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               child: (profilePhoto == null)
                                   ? ClipOval(
                                       child: Image.asset(
-                                        'assets/jpegs/profile_photo.jpeg',
+                                        AssetPaths.noUserPhoto,
                                         fit: BoxFit.fill,
                                       ),
                                     )
@@ -74,7 +77,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ),
                         const CircleAvatar(
                           radius: 14,
-                          backgroundColor: Colors.black,
+                          backgroundColor: ColorConstants.blackColor,
                           child: CircleAvatar(
                             radius: 12,
                             child: Icon(

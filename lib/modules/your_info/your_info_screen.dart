@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../utils/common_methods.dart';
 import '../../models/education_info_model.dart';
 import '../../models/professional_info_model.dart';
 import '../../utils/app_singelton.dart';
@@ -63,7 +64,7 @@ class _YourInfoScreenState extends State<YourInfoScreen> {
                     'HSC/Diploma',
                     'SSC'
                   ],
-                  validatorFunction: validateDropDown,
+                  validatorFunction: CommonMethods.validateDropDown,
                   onChanged: (value) {
                     setState(() {
                       education = value;
@@ -79,7 +80,7 @@ class _YourInfoScreenState extends State<YourInfoScreen> {
                 BaseDropDownButton(
                   value: yearOfPassing,
                   items: const ['2020', '2021', '2022'],
-                  validatorFunction: validateDropDown,
+                  validatorFunction: CommonMethods.validateDropDown,
                   onChanged: (value) {
                     setState(() {
                       yearOfPassing = value;
@@ -125,7 +126,7 @@ class _YourInfoScreenState extends State<YourInfoScreen> {
                 BaseDropDownButton(
                   value: designation,
                   items: const ['Designation', 'Designation1', 'Designation2'],
-                  validatorFunction: validateDropDown,
+                  validatorFunction: CommonMethods.validateDropDown,
                   onChanged: (value) {
                     setState(() {
                       designation = value;
@@ -193,14 +194,6 @@ class _YourInfoScreenState extends State<YourInfoScreen> {
         ),
       )),
     );
-  }
-
-  String? validateDropDown(String? value) {
-    if (value == null) {
-      return StringConstants.requiredField;
-    } else {
-      return null;
-    }
   }
 
   String? validateGrade(String? value) {

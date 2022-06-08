@@ -1,8 +1,7 @@
-import 'professional_info_model.dart';
-
 import 'address_info_model.dart';
 import 'basic_info_model.dart';
 import 'education_info_model.dart';
+import 'professional_info_model.dart';
 
 class User {
   final BasicInfo basicInfo;
