@@ -9,6 +9,7 @@ import '../../common_widgets/base_button.dart';
 import '../../common_widgets/base_text_field.dart';
 import '../../common_widgets/horizontal_sizedbox.dart';
 import '../../common_widgets/vertical_sizedbox.dart';
+import '../../constants/padding_constants.dart';
 import '../../constants/routes_constants.dart';
 import '../../constants/string_constants.dart';
 import '../../models/basic_info_model.dart';
@@ -46,7 +47,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 10),
+          padding: PaddingConstants.commonPagePadding,
           child: SingleChildScrollView(
             child: Form(
               key: _formGlobalKey,

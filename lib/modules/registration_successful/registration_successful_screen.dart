@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../constants/padding_constants.dart';
 
 class RegistrationSuccessfulScreen extends StatelessWidget {
   const RegistrationSuccessfulScreen({Key? key}) : super(key: key);
@@ -7,8 +8,11 @@ class RegistrationSuccessfulScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: SafeArea(
-          child: Center(
-        child: Text('Registration Successful'),
+          child: Padding(
+        padding: PaddingConstants.commonPagePadding,
+        child: Center(
+          child: Text('Registration Successful'),
+        ),
       )),
     );
   }

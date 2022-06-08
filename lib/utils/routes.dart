@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../constants/routes_constants.dart';
 import '../modules/registration/registration_screen.dart';
 import '../modules/registration_successful/registration_successful_screen.dart';

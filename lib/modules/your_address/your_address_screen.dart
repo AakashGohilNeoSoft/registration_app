@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../constants/padding_constants.dart';
 import '../../models/address_info_model.dart';
 import '../../utils/app_singelton.dart';
 import '../../constants/routes_constants.dart';
@@ -34,7 +35,7 @@ class _YourAddressScreenState extends State<YourAddressScreen> {
       ),
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.all(22.0),
+        padding: PaddingConstants.commonPagePadding,
         child: SingleChildScrollView(
           child: Form(
             key: _formGlobalKey,

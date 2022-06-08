@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../constants/padding_constants.dart';
 import '../../utils/common_methods.dart';
 import '../../models/education_info_model.dart';
 import '../../models/professional_info_model.dart';
@@ -40,7 +41,7 @@ class _YourInfoScreenState extends State<YourInfoScreen> {
       body: SafeArea(
           child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(22.0),
+          padding: PaddingConstants.commonPagePadding,
           child: Form(
             key: _formGlobalKey,
             child: Column(
