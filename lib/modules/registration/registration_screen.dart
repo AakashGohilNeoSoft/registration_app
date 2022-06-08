@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:registration_app/constants/textstyles_constants.dart';
 import '../../constants/asset_paths.dart';
 import '../../constants/color_constants.dart';
 
@@ -130,11 +131,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Padding(
-                        padding: EdgeInsets.only(left: 16.0),
+                        padding: PaddingConstants.left16,
                         child: Text(
                           StringConstants.gender,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
+                          style: TextStyleConstants.heading,
                         ),
                       ),
                       const VerticalSizedBox(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:registration_app/constants/textstyles_constants.dart';
 import '../../constants/padding_constants.dart';
 import '../../models/address_info_model.dart';
 import '../../utils/app_singelton.dart';
@@ -66,10 +67,8 @@ class _YourAddressScreenState extends State<YourAddressScreen> {
                   prefixIcon: Icons.location_city,
                 ),
                 const VerticalSizedBox(),
-                const Text(
-                  StringConstants.state,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                ),
+                const Text(StringConstants.state,
+                    style: TextStyleConstants.heading),
                 const VerticalSizedBox(),
                 BaseDropDownButton(
                   value: state,

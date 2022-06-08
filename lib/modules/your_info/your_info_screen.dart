@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:registration_app/constants/textstyles_constants.dart';
 import '../../constants/padding_constants.dart';
 import '../../utils/common_methods.dart';
 import '../../models/education_info_model.dart';
@@ -54,7 +55,7 @@ class _YourInfoScreenState extends State<YourInfoScreen> {
                 const VerticalSizedBox(),
                 const Text(
                   StringConstants.education,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: TextStyleConstants.heading,
                 ),
                 const VerticalSizedBox(),
                 BaseDropDownButton(
@@ -75,7 +76,7 @@ class _YourInfoScreenState extends State<YourInfoScreen> {
                 const VerticalSizedBox(),
                 const Text(
                   StringConstants.yearOfPassing,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: TextStyleConstants.heading,
                 ),
                 const VerticalSizedBox(),
                 BaseDropDownButton(
@@ -91,7 +92,7 @@ class _YourInfoScreenState extends State<YourInfoScreen> {
                 const VerticalSizedBox(),
                 const Text(
                   StringConstants.grade,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: TextStyleConstants.heading,
                 ),
                 const VerticalSizedBox(),
                 BaseTextField(
@@ -101,14 +102,14 @@ class _YourInfoScreenState extends State<YourInfoScreen> {
                   lable: StringConstants.grade,
                 ),
                 const VerticalSizedBox(),
-                const Text(
+                Text(
                   StringConstants.professionalInfo,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  style: TextStyleConstants.heading.copyWith(fontSize: 20),
                 ),
                 const VerticalSizedBox(),
                 const Text(
                   StringConstants.exeperience,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: TextStyleConstants.heading,
                 ),
                 const VerticalSizedBox(),
                 BaseTextField(
@@ -121,7 +122,7 @@ class _YourInfoScreenState extends State<YourInfoScreen> {
                 const VerticalSizedBox(),
                 const Text(
                   StringConstants.designation,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: TextStyleConstants.heading,
                 ),
                 const VerticalSizedBox(),
                 BaseDropDownButton(
@@ -137,7 +138,7 @@ class _YourInfoScreenState extends State<YourInfoScreen> {
                 const VerticalSizedBox(),
                 const Text(
                   StringConstants.domain,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: TextStyleConstants.heading,
                 ),
                 const VerticalSizedBox(),
                 BaseDropDownButton(
