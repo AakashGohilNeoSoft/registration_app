@@ -62,6 +62,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               radius: 43,
                               backgroundImage: (profilePhoto) != null
                                   ? FileImage(profilePhoto!)
+                                  : null,
+                              child: (profilePhoto == null)
+                                  ? ClipOval(
+                                      child: Image.asset(
+                                        'assets/jpegs/profile_photo.jpeg',
+                                        fit: BoxFit.fill,
+                                      ),
+                                    )
                                   : null),
                         ),
                         const CircleAvatar(
