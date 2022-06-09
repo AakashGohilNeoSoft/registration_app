@@ -33,6 +33,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.textEditingController,
+      textInputAction: TextInputAction.next,
       keyboardType: widget.keyboardType ?? TextInputType.name,
       decoration: InputDecoration(
         prefixIcon: widget.prefixIcon != null ? Icon(widget.prefixIcon) : null,
