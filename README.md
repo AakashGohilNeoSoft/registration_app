@@ -20,3 +20,9 @@ screenshots:
 ![1654762675956](https://user-images.githubusercontent.com/106729885/172800003-3ff233bf-d5f1-46c8-b1da-852b88a8cdaf.jpg)
 ![1654762675967](https://user-images.githubusercontent.com/106729885/172800012-da11a67a-d254-4e21-a288-e6aa8816f007.jpg)
 ![1654762675979](https://user-images.githubusercontent.com/106729885/172800019-7d8c31e7-8240-48fb-ab84-2116aea24b49.jpg)
+
+video:
+
+https://user-images.githubusercontent.com/106729885/172802718-703205f2-20b8-4188-9ffc-0194922116a1.mp4
+
+
