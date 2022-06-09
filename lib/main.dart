@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'modules/registration/bloc/registration_bloc.dart';
+import 'modules/registration/registration_screen.dart';
 
-import 'constants/routes_constants.dart';
 import 'constants/string_constants.dart';
 import 'utils/routes.dart';
 
@@ -20,7 +22,10 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: Routes.onGenerateRoute,
-      initialRoute: RouteConstants.registration,
+      home: BlocProvider(
+        create: (context) => RegistrationBloc(),
+        child: const RegistrationScreen(),
+      ),
     );
   }
 }

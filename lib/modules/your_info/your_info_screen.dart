@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:registration_app/constants/textstyles_constants.dart';
+import '../../constants/textstyles_constants.dart';
 import '../../constants/padding_constants.dart';
 import '../../utils/common_methods.dart';
 import '../../models/education_info_model.dart';

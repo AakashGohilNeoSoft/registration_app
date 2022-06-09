@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:registration_app/constants/textstyles_constants.dart';
+import '../../constants/textstyles_constants.dart';
 import '../../constants/padding_constants.dart';
 import '../../models/address_info_model.dart';
 import '../../utils/app_singelton.dart';

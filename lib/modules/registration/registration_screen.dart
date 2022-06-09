@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:registration_app/constants/textstyles_constants.dart';
+import '../../constants/textstyles_constants.dart';
+import 'bloc/registration_bloc.dart';
 import '../../constants/asset_paths.dart';
 import '../../constants/color_constants.dart';
 
@@ -54,42 +56,50 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               key: _formGlobalKey,
               child: Column(
                 children: [
-                  InkWell(
-                    onTap: () async {
-                      pickImage();
-                    },
-                    child: Stack(
-                      children: [
-                        CircleAvatar(
-                          radius: 45,
-                          backgroundColor: ColorConstants.blackColor,
-                          child: CircleAvatar(
-                              radius: 43,
-                              backgroundImage: (profilePhoto) != null
-                                  ? FileImage(profilePhoto!)
-                                  : null,
-                              child: (profilePhoto == null)
-                                  ? ClipOval(
-                                      child: Image.asset(
-                                        AssetPaths.noUserPhoto,
-                                        fit: BoxFit.fill,
-                                      ),
-                                    )
-                                  : null),
-                        ),
-                        const CircleAvatar(
-                          radius: 14,
-                          backgroundColor: ColorConstants.blackColor,
-                          child: CircleAvatar(
-                            radius: 12,
-                            child: Icon(
-                              Icons.edit,
-                              size: 16,
+                  BlocBuilder<RegistrationBloc, RegistrationState>(
+                    builder: (context, state) {
+                      return InkWell(
+                        onTap: () async {
+                          BlocProvider.of<RegistrationBloc>(context)
+                              .add(PickImageEvent(imagePicker: _imagePicker));
+                          if (state is ImagePickedState) {
+                            profilePhoto = state.image;
+                          }
+                        },
+                        child: Stack(
+                          children: [
+                            CircleAvatar(
+                              radius: 45,
+                              backgroundColor: ColorConstants.blackColor,
+                              child: CircleAvatar(
+                                  radius: 43,
+                                  backgroundImage: ((profilePhoto) != null)
+                                      ? FileImage(profilePhoto!)
+                                      : null,
+                                  child: (profilePhoto == null)
+                                      ? ClipOval(
+                                          child: Image.asset(
+                                            AssetPaths.noUserPhoto,
+                                            fit: BoxFit.fill,
+                                          ),
+                                        )
+                                      : null),
                             ),
-                          ),
+                            const CircleAvatar(
+                              radius: 14,
+                              backgroundColor: ColorConstants.blackColor,
+                              child: CircleAvatar(
+                                radius: 12,
+                                child: Icon(
+                                  Icons.edit,
+                                  size: 16,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      );
+                    },
                   ),
                   const VerticalSizedBox(),
                   BaseTextField(
@@ -138,28 +148,36 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ),
                       ),
                       const VerticalSizedBox(),
-                      Row(
-                        children: [
-                          Radio(
-                              value: 1,
-                              groupValue: _groupValue,
-                              onChanged: (value) {
-                                setState(() {
-                                  _groupValue = value as int;
-                                });
-                              }),
-                          const Text(StringConstants.male),
-                          const HorizontalSizedBox(),
-                          Radio(
-                              value: 2,
-                              groupValue: _groupValue,
-                              onChanged: (value) {
-                                setState(() {
-                                  _groupValue = value as int;
-                                });
-                              }),
-                          const Text(StringConstants.female)
-                        ],
+                      BlocBuilder<RegistrationBloc, RegistrationState>(
+                        builder: (context, state) {
+                          return Row(
+                            children: [
+                              Radio(
+                                  value: 1,
+                                  groupValue: (state is SelectedGender)
+                                      ? state.gender
+                                      : 1,
+                                  onChanged: (value) {
+                                    BlocProvider.of<RegistrationBloc>(context)
+                                        .add(MaleSelectedEvent());
+                                    _groupValue = value as int;
+                                  }),
+                              const Text(StringConstants.male),
+                              const HorizontalSizedBox(),
+                              Radio(
+                                  value: 2,
+                                  groupValue: (state is SelectedGender)
+                                      ? state.gender
+                                      : 1,
+                                  onChanged: (value) {
+                                    BlocProvider.of<RegistrationBloc>(context)
+                                        .add(FemaleSelectedEvent());
+                                    _groupValue = value as int;
+                                  }),
+                              const Text(StringConstants.female)
+                            ],
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -183,25 +201,29 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     validatorFunction: validateConfirmPassword,
                   ),
                   const VerticalSizedBox(),
-                  BaseButton(
-                    width: double.infinity,
-                    buttonText: StringConstants.next,
-                    onPressed: () {
-                      try {
-                        if (_formGlobalKey.currentState!.validate()) {
-                          Singleton.basicInfo = BasicInfo(
-                              profilePhoto: profilePhoto,
-                              firstName: firstNameController.text,
-                              lastName: lastNameController.text,
-                              phone: int.parse(phoneController.text),
-                              email: emailController.text,
-                              password: passwordController.text,
-                              gender: Gender(_groupValue));
-                          Navigator.pushNamed(context, RouteConstants.yourInfo);
-                        }
-                      } catch (e) {
-                        throw (e.toString());
-                      }
+                  BlocBuilder<RegistrationBloc, RegistrationState>(
+                    builder: (context, state) {
+                      return BaseButton(
+                        width: double.infinity,
+                        buttonText: StringConstants.next,
+                        onPressed: () {
+                          BlocProvider.of<RegistrationBloc>(context).add(
+                              NextButtonPressedEvent(
+                                  _formGlobalKey.currentState!));
+                          if (state is FormValidatedState) {
+                            Singleton.basicInfo = BasicInfo(
+                                profilePhoto: profilePhoto,
+                                firstName: firstNameController.text,
+                                lastName: lastNameController.text,
+                                phone: int.parse(phoneController.text),
+                                email: emailController.text,
+                                password: passwordController.text,
+                                gender: Gender(_groupValue));
+                            Navigator.pushNamed(
+                                context, RouteConstants.yourInfo);
+                          }
+                        },
+                      );
                     },
                   )
                 ],
@@ -272,20 +294,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       return StringConstants.pleaseEnterValidFirstName;
     } else {
       return null;
-    }
-  }
-
-  void pickImage() async {
-    try {
-      XFile? pickedPhoto =
-          await _imagePicker.pickImage(source: ImageSource.gallery);
-      if (pickedPhoto != null) {
-        setState(() {
-          profilePhoto = File(pickedPhoto.path);
-        });
-      }
-    } catch (e) {
-      throw (e.toString());
     }
   }
 }
