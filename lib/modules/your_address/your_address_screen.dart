@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import '../../constants/textstyles_constants.dart';
-import '../../constants/padding_constants.dart';
-import '../../models/address_info_model.dart';
-import '../../utils/app_singelton.dart';
-import '../../constants/routes_constants.dart';
+
 import '../../common_widgets/base_button.dart';
 import '../../common_widgets/base_drop_down_button_form_field.dart';
 import '../../common_widgets/base_text_field.dart';
 import '../../common_widgets/vertical_sizedbox.dart';
+import '../../constants/padding_constants.dart';
+import '../../constants/routes_constants.dart';
 import '../../constants/string_constants.dart';
+import '../../constants/textstyles_constants.dart';
+import '../../models/address_info_model.dart';
+import '../../utils/app_singelton.dart';
 
 class YourAddressScreen extends StatefulWidget {
   const YourAddressScreen({Key? key}) : super(key: key);
