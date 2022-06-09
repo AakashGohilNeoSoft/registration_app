@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/your_address_bloc.dart';
 
 import '../../common_widgets/base_button.dart';
 import '../../common_widgets/base_drop_down_button_form_field.dart';
@@ -71,14 +73,20 @@ class _YourAddressScreenState extends State<YourAddressScreen> {
                 const Text(StringConstants.state,
                     style: TextStyleConstants.heading),
                 const VerticalSizedBox(),
-                BaseDropDownButton(
-                  value: state,
-                  items: const ['Gujarat', 'Goa', 'UP'],
-                  validatorFunction: validateDropDown,
-                  onChanged: (value) {
-                    setState(() {
-                      state = value;
-                    });
+                BlocBuilder<YourAddressBloc, YourAddressState>(
+                  builder: (context, state) {
+                    if (state is StateSelectedState) {
+                      this.state = state.value;
+                    }
+                    return BaseDropDownButton(
+                      value: this.state,
+                      items: const ['Gujarat', 'Goa', 'UP'],
+                      validatorFunction: validateDropDown,
+                      onChanged: (value) {
+                        BlocProvider.of<YourAddressBloc>(context)
+                            .add(SelectStateEvent(value));
+                      },
+                    );
                   },
                 ),
                 const VerticalSizedBox(),
@@ -92,26 +100,32 @@ class _YourAddressScreenState extends State<YourAddressScreen> {
                   prefixIcon: Icons.location_city,
                 ),
                 const VerticalSizedBox(),
-                BaseButton(
-                  width: double.infinity,
-                  buttonText: StringConstants.submit,
-                  onPressed: () {
-                    try {
-                      if (_formGlobalKey.currentState!.validate()) {
-                        Singleton.addressInfo = AddressInfo(
-                            address: addressController.text,
-                            landmark: landmarkController.text,
-                            city: cityController.text,
-                            state: state!,
-                            pincode: int.parse(pincodeController.text));
-                        Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            RouteConstants.registrationSuccessful,
-                            (route) => false);
-                      }
-                    } catch (e) {
-                      throw (e.toString());
-                    }
+                BlocBuilder<YourAddressBloc, YourAddressState>(
+                  builder: (context, state) {
+                    return BaseButton(
+                      width: double.infinity,
+                      buttonText: StringConstants.submit,
+                      onPressed: () {
+                        BlocProvider.of<YourAddressBloc>(context)
+                            .add(SubmitEvent(_formGlobalKey.currentState!));
+                        if (state is RegistrationSuccessfulState) {
+                          try {
+                            Singleton.addressInfo = AddressInfo(
+                                address: addressController.text,
+                                landmark: landmarkController.text,
+                                city: cityController.text,
+                                state: this.state!,
+                                pincode: int.parse(pincodeController.text));
+                            Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                RouteConstants.registrationSuccessful,
+                                (route) => false);
+                          } catch (e) {
+                            throw (e.toString());
+                          }
+                        }
+                      },
+                    );
                   },
                 )
               ],

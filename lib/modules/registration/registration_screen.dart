@@ -3,20 +3,20 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../constants/textstyles_constants.dart';
-import 'bloc/registration_bloc.dart';
-import '../../constants/asset_paths.dart';
-import '../../constants/color_constants.dart';
 
 import '../../common_widgets/base_button.dart';
 import '../../common_widgets/base_text_field.dart';
 import '../../common_widgets/horizontal_sizedbox.dart';
 import '../../common_widgets/vertical_sizedbox.dart';
+import '../../constants/asset_paths.dart';
+import '../../constants/color_constants.dart';
 import '../../constants/padding_constants.dart';
 import '../../constants/routes_constants.dart';
 import '../../constants/string_constants.dart';
+import '../../constants/textstyles_constants.dart';
 import '../../models/basic_info_model.dart';
 import '../../utils/app_singelton.dart';
+import 'bloc/registration_bloc.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
